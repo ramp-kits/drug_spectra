@@ -14,7 +14,7 @@ Predictions_1 = rw.prediction_types.make_multiclass(
 # We make a 2D but single-column y_pred (instead of a classical 1D y_pred)
 # to make handling the combined 2D y_pred array easier
 Predictions_2 = rw.prediction_types.make_regression(
-    label_names=_target_column_name_reg)
+    label_names=[_target_column_name_reg])
 # A type (class) which will be used to create wrapper objects for y_pred
 Predictions = rw.prediction_types.make_combined([Predictions_1, Predictions_2])
 # An object implementing the workflow
