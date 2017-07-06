@@ -20,15 +20,14 @@ Predictions = rw.prediction_types.make_combined([Predictions_1, Predictions_2])
 # An object implementing the workflow
 workflow = rw.workflows.DrugSpectra()
 
-score_type_1 = rw.score_types.ClassificationError(
-    name='error', n_columns=len(_prediction_label_names), precision=3)
-score_type_2 = rw.score_types.MARE(name='mare', n_columns=1, precision=3)
+score_type_1 = rw.score_types.ClassificationError(name='error', precision=3)
+score_type_2 = rw.score_types.MARE(name='mare', precision=3)
 score_types = [
-#    score_type_1,
-#    score_type_2,
     rw.score_types.Combined(
         name='combined', score_types=[score_type_1, score_type_2],
         weights=[2. / 3, 1. / 3], precision=3),
+    rw.score_types.MakeCombined(score_type_1, 0),
+    rw.score_types.MakeCombined(score_type_2, 1)
 ]
 
 
