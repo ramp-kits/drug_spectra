@@ -19,7 +19,7 @@ install:
     - cd ..
 script:
     - flake8 *.py submissions/*/*.py
-    - jupyter nbconvert --execute drug_spectra_starting_kit.ipynb --ExecutePreprocessor.kernel_name=$IPYTHON_KERNEL
+    - jupyter nbconvert --execute drug_spectra_starting_kit.ipynb --ExecutePreprocessor.kernel_name=$IPYTHON_KERNEL --ExecutePreprocessor.timeout=600
     - ramp_test_submission
 notifications:
   email: true
