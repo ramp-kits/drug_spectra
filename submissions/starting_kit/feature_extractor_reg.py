@@ -1,7 +1,6 @@
 import numpy as np
-# import pandas as pd
 
-labels = np.array(['A', 'B', 'Q', 'R'])
+label_names = np.array(['A', 'B', 'Q', 'R'])
 
 
 class FeatureExtractor():
@@ -12,8 +11,8 @@ class FeatureExtractor():
         pass
 
     def transform(self, X_df):
-        XX = np.array([np.array(dd) for dd in X_df['spectra']])
-        XX -= np.median(XX, axis=1)[:, None]
-        XX /= np.sqrt(np.sum(XX ** 2, axis=1))[:, None]
-        XX = np.concatenate([XX, X_df[labels].values], axis=1)
-        return XX
+        X_array = np.array([np.array(dd) for dd in X_df['spectra']])
+        X_array -= np.median(X_array, axis=1)[:, None]
+        X_array /= np.sqrt(np.sum(X_array ** 2, axis=1))[:, None]
+        X_array = np.concatenate([X_array, X_df[label_names].values], axis=1)
+        return X_array

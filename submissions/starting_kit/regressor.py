@@ -24,14 +24,14 @@ class Regressor(BaseEstimator):
     def fit(self, X, y):
         for i, mol in enumerate(self.list_molecule):
             ind_mol = np.where(np.argmax(X[:, -4:], axis=1) == i)[0]
-            XX_mol = X[ind_mol]
+            X_mol = X[ind_mol]
             y_mol = y[ind_mol]
-            self.dict_reg[mol].fit(XX_mol, np.log(y_mol))
+            self.dict_reg[mol].fit(X_mol, np.log(y_mol))
 
     def predict(self, X):
         y_pred = np.zeros(X.shape[0])
         for i, mol in enumerate(self.list_molecule):
             ind_mol = np.where(np.argmax(X[:, -4:], axis=1) == i)[0]
-            XX_mol = X[ind_mol]
-            y_pred[ind_mol] = np.exp(self.dict_reg[mol].predict(XX_mol))
+            X_mol = X[ind_mol]
+            y_pred[ind_mol] = np.exp(self.dict_reg[mol].predict(X_mol))
         return y_pred

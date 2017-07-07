@@ -1,5 +1,4 @@
 import numpy as np
-# import pandas as pd
 
 
 class FeatureExtractor():
@@ -10,5 +9,5 @@ class FeatureExtractor():
         pass
 
     def transform(self, X_df):
-        XX = np.array([np.array(dd) for dd in X_df['spectra']])
-        return XX
+        X_array = np.array([np.array(dd) for dd in X_df['spectra']])
+        return X_array

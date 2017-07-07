@@ -1,3 +1,4 @@
+
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.decomposition import PCA
 from sklearn.pipeline import Pipeline
@@ -10,8 +11,8 @@ class Classifier(BaseEstimator):
         self.n_estimators = 300
         self.clf = Pipeline([
             ('pca', PCA(n_components=self.n_components)),
-            ('clf', RandomForestClassifier(n_estimators=self.n_estimators,
-                                           random_state=42))
+            ('clf', RandomForestClassifier(
+                n_estimators=self.n_estimators, random_state=42))
         ])
 
     def fit(self, X, y):
