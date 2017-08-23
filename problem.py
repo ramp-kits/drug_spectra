@@ -40,7 +40,7 @@ Predictions = rw.prediction_types.make_combined([Predictions_1, Predictions_2])
 workflow = rw.workflows.DrugSpectra()
 
 # The first score will be applied on the first Predictions
-score_type_1 = rw.score_types.ClassificationError(name='error', precision=3)
+score_type_1 = rw.score_types.ClassificationError(name='err', precision=3)
 # The second score will be applied on the second Predictions
 score_type_2 = rw.score_types.MARE(name='mare', precision=3)
 score_types = [
