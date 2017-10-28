@@ -7,8 +7,8 @@ import numpy as np
 
 class Regressor(BaseEstimator):
     def __init__(self):
-        self.n_components = 100
-        self.n_estimators = 10
+        self.n_components = 10
+        self.n_estimators = 40
         self.learning_rate = 0.2
         self.list_molecule = ['A', 'B', 'Q', 'R']
         self.dict_reg = {}
