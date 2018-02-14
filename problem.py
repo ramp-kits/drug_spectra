@@ -57,15 +57,14 @@ score_types = [
 
 
 def _read_data(path, f_name):
-    df = pd.read_csv(os.path.join(path, 'data', f_name))
-    y_array = df[[_target_column_name_clf, _target_column_name_reg]].values
-    X_df = df.drop([_target_column_name_clf, _target_column_name_reg], axis=1)
-    spectra = X_df['spectra'].values
-    spectra = np.array([np.array(
-        dd[1:-1].split(',')).astype(float) for dd in spectra])
-    # We put the whole spectra as a single column of the DataFrame, containing
-    # a vector
-    X_df['spectra'] = spectra.tolist()
+    X_df = pd.read_csv(os.path.join(path, 'data', f_name))
+    y_columns = [_target_column_name_clf, _target_column_name_reg]
+    y_array = X_df[y_columns].values
+    X_df = X_df.drop(y_columns, axis=1)
+    # Convert spectra entry from string to array of floats
+    X_df['spectra'] = X_df.spectra.apply(
+        lambda x: np.fromstring(x[1:-1], sep=',', dtype=float))
+
     return X_df, y_array
 
 

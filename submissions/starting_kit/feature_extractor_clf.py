@@ -9,5 +9,4 @@ class FeatureExtractor():
         pass
 
     def transform(self, X_df):
-        X_array = np.array([np.array(dd) for dd in X_df['spectra']])
-        return X_array
+        return np.stack(X_df.spectra.values)
